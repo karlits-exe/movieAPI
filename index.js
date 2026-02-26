@@ -4,7 +4,7 @@ const cors = require('cors')
 const userRoutes = require('./routes/user');
 const movieRoutes = require('./routes/movie')
 
-
+require('dotenv').config()
 const app = express()
 require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 const corsOptions = {
@@ -23,7 +23,7 @@ app.use("/movies", movieRoutes);
 
 
 mongoose.connect(
-  "mongodb+srv://admin:admin1234@rodriguezdb.gduc8wf.mongodb.net/movie?appName=RodriguezDB",
+  process.env.MONGODB_STRING,
 );
 
 mongoose.connection.once('open', () => {

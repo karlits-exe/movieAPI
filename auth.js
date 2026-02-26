@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secret = "movieAPI";
+require('dotenv').config();
 
 module.exports.createAccessToken = (user) => {
   const data = {
@@ -8,7 +8,7 @@ module.exports.createAccessToken = (user) => {
     isAdmin: user.isAdmin,
   };
 
-  return jwt.sign(data, secret, {});
+  return jwt.sign(data, process.env.JWT_SECRET_KEY, {});
 };
 
 module.exports.verify = (req, res, next) => {
